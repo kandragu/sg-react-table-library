@@ -8,7 +8,7 @@ export default {
   component: Table,
 } as ComponentMeta<typeof Table>;
 
-const Template: ComponentStory<typeof Table> = (args) => <Table data={data} columns={columns} />;
+const Template: ComponentStory<typeof Table> = (args) => <Table data={data} columns={columns} checkbox />;
 
 export const Default = Template.bind({});
 // Default.args = {

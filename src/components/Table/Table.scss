@@ -4,6 +4,7 @@ $font-family-avenir-book: 'Avenir Book', sans-serif;
 $line-height: 1.75;
 $letter-spacing-header: 0;
 $letter-spacing-cell: 0.1;
+$select-btn-color: #5c50bb;
 
 @mixin font-size($size) {
   @if $size == XL {
@@ -14,6 +15,22 @@ $letter-spacing-cell: 0.1;
     font-size: 18px;
   } @else {
     font-size: 16px;
+  }
+}
+
+@mixin btn-size($size) {
+  @if $size == XL {
+    width: 32px;
+    height: 32px;
+  } @else if $size == LG {
+    width: 24px;
+    height: 24px;
+  } @else if $size == MD {
+    width: 20px;
+    height: 20px;
+  } @else {
+    width: 16px;
+    height: 16px;
   }
 }
 
@@ -52,6 +69,12 @@ table {
     letter-spacing: $letter-spacing-cell;
 
     @include font-size(XL); // Change this to apply different font sizes
+
+    .selectionBtn {
+      @include btn-size(XL); // Change this to apply different button sizes
+      border-radius: 50%;
+      accent-color: #5c50bb;
+    }
   }
 
   tr {
@@ -79,9 +102,8 @@ table {
     content: ' ↓';
   }
 
-  .hd {
-    color: #282c34;
-    background-color: #61dafb;
+  .selected-row {
+    background-color: #efedfd;
   }
 
   @media (max-width: 768px) {
@@ -112,6 +134,12 @@ table {
       border: none;
 
       @include font-size(SM); // Change this to apply different font sizes for small screens
+
+      .selectionBtn {
+        @include btn-size(LG); // Change this to apply different button sizes
+        // border-radius: 50%;
+        accent-color: #5c50bb;
+      }
     }
 
     th {
