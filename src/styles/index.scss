@@ -1,102 +1,233 @@
-$primary: #007bff;
-$secondary: #6c757d;
-$success: #28a745;
-$info: #17a2b8;
-$warning: #ffc107;
-$danger: #dc3545;
+// Define variables and mixins
+$primary: grey;
+$secondary: #60966c;
+$primary-selecton-btn: #5c50bb;
+$primary-row-selected: #efedfd;
+$secondary-row-selected: #aea2ef;
 
-$primary-border: darken($primary, 5%);
-$secondary-border: darken($secondary, 5%);
-$success-border: darken($success, 5%);
-$info-border: darken($info, 5%);
-$warning-border: darken($warning, 5%);
-$danger-border: darken($danger, 5%);
+$font-family-avenir-heavy: 'Avenir Heavy', sans-serif;
+$font-family-avenir-book: 'Avenir Book', sans-serif;
+$line-height: 1.75;
+$letter-spacing-header: 0;
+$letter-spacing-cell: 0.1;
+$select-btn-color: #5c50bb;
 
-@mixin btn($color, $bg-color, $border-color) {
-  color: $color;
-  background-color: $bg-color;
-  border-color: $border-color;
-
-  &:hover {
-    background-color: darken($bg-color, 5%);
-    border-color: darken($border-color, 5%);
-  }
-
-  &:focus {
-    box-shadow: 0 0 0 0.2rem rgba($color, 0.5);
-  }
-
-  &:disabled {
-    color: lightgray;
-    background-color: gray;
-    border-color: darken(gray, 5%);
-    cursor: not-allowed;
+@mixin font-size($size) {
+  @if $size == XL {
+    font-size: 20px;
+  } @else if $size == LG {
+    font-size: 20px;
+  } @else if $size == MD {
+    font-size: 18px;
+  } @else {
+    font-size: 16px;
   }
 }
 
-.btn {
-  display: inline-block;
-  font-weight: 400;
-  text-align: center;
-  vertical-align: middle;
-  user-select: none;
-  padding: 0.375rem 0.75rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  border-radius: 0.35rem;
-  outline: none;
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
-    box-shadow 0.15s ease-in-out;
+@mixin btn-size($size) {
+  @if $size == XL {
+    width: 32px;
+    height: 32px;
+  } @else if $size == LG {
+    width: 24px;
+    height: 24px;
+  } @else if $size == MD {
+    width: 20px;
+    height: 20px;
+  } @else {
+    width: 16px;
+    height: 16px;
+  }
+}
 
-  &-primary {
-    @include btn(whitesmoke, $primary, $primary-border);
+.mobile-header {
+  display: none;
+  text-align: center; // or any alignment you prefer
+  font-family: $font-family-avenir-heavy;
+  line-height: $line-height;
+  letter-spacing: $letter-spacing-header;
+  margin-bottom: 0.5rem;
+}
+
+.table {
+  box-shadow: 2px -2px 3px 3px #ccc;
+  border-radius: 16px;
+  margin: 4rem;
+  border-spacing: 0;
+  margin: 0px;
+
+  thead {
+    th:first-child {
+      border-top-left-radius: 16px;
+    }
+
+    th:last-child {
+      border-top-right-radius: 16px;
+    }
   }
 
-  &-secondary {
-    @include btn(whitesmoke, $secondary, $secondary-border);
+  &-primary th {
+    background-color: rgba($color: grey, $alpha: 0.1);
   }
 
-  &-success {
-    @include btn(whitesmoke, $success, $success-border);
+  &-secondary th {
+    background-color: rgba($color: $secondary, $alpha: 0.3);
   }
 
-  &-warning {
-    @include btn(whitesmoke, $warning, $warning-border);
+  th {
+    padding: 24px;
+    font-family: $font-family-avenir-heavy;
+    line-height: $line-height;
+    letter-spacing: $letter-spacing-header;
+    cursor: pointer;
+
+    @include font-size(XL); // Change this to apply different font sizes
   }
 
-  &-info {
-    @include btn(whitesmoke, $info, $info-border);
+  td {
+    padding: 24px;
+    font-family: $font-family-avenir-book;
+    line-height: $line-height;
+    letter-spacing: $letter-spacing-cell;
+
+    @include font-size(XL); // Change this to apply different font sizes
+
+    .selectionBtn {
+      @include btn-size(XL); // Change this to apply different button sizes
+      border-radius: 50%;
+      accent-color: $primary-selecton-btn;
+    }
   }
 
-  &-danger {
-    @include btn(whitesmoke, $danger, $danger-border);
+  tr {
+    position: relative;
+
+    &:not(:last-child):after {
+      content: '';
+      position: absolute;
+      left: 10px; // adjust this to change left padding
+      right: 10px; // adjust this to change right padding
+      bottom: 0;
+      border-bottom: 1px solid #ddd;
+    }
   }
 
-  &-outline {
+  .sort-asc::after {
+    content: ' ↑';
+  }
+
+  .sort-desc::after {
+    content: ' ↓';
+  }
+
+  &-selected-row {
     &-primary {
-      @include btn($primary, transparent, $primary);
+      background-color: $primary-row-selected;
     }
-
     &-secondary {
-      @include btn($secondary, transparent, $secondary);
+      background-color: $secondary-row-selected;
+    }
+  }
+
+  @media (max-width: 780px) {
+    box-shadow: 2px -2px 3px 3px #ccc;
+    border-radius: 8px;
+    margin: 4rem;
+    border-spacing: 0;
+
+    thead {
+      th:first-child {
+        border-top-left-radius: 8px;
+      }
+
+      th:last-child {
+        border-top-right-radius: 8px;
+      }
     }
 
-    &-success {
-      @include btn($success, transparent, $success);
+    th {
+      padding: 8px 16px;
+      font-family: $font-family-avenir-heavy;
+      line-height: $line-height;
+      letter-spacing: $letter-spacing-header;
+      cursor: pointer;
+
+      @include font-size(LG); // Change this to apply different font sizes
     }
 
-    &-warning {
-      @include btn($warning, transparent, $warning);
+    td {
+      padding: 8px 16px;
+
+      @include font-size(LG); // Change this to apply different font sizes
+
+      .selectionBtn {
+        @include btn-size(LG); // Change this to apply different button sizes
+        border-radius: 50%;
+        accent-color: $primary-selecton-btn;
+      }
     }
 
-    &-info {
-      @include btn($info, transparent, $info);
+    tr {
+      position: relative;
+    }
+  }
+
+  @media (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0px;
+
+    tr {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      &:not(:last-child):after {
+        content: '';
+        position: absolute;
+        left: 10px; // adjust this to change left padding
+        right: 10px; // adjust this to change right padding
+        bottom: 0;
+        border-bottom: 1px solid #ddd;
+      }
+
+      td:nth-child(n + 3) {
+        flex-basis: 100%;
+      }
+
+      td:first-child {
+        flex-basis: 5%;
+      }
+      td:nth-child(2) {
+        flex-basis: 60%;
+      }
     }
 
-    &-danger {
-      @include btn($danger, transparent, $danger);
+    th,
+    td {
+      flex-basis: 100%;
+      border: none;
+
+      @include font-size(SM); // Change this to apply different font sizes for small screens
     }
+
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+
+    .select-column {
+      width: auto;
+    }
+
+    thead {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .mobile-header {
+    display: block;
   }
 }
