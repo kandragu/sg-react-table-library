@@ -9,11 +9,12 @@ export default {
 } as ComponentMeta<typeof Table>;
 
 const Template: ComponentStory<typeof Table> = (args) => (
-  <Table data={data} columns={columns} checkbox={args.checkbox} radio={args.radio} />
+  <Table variant={args.variant} data={data} columns={columns} checkbox={args.checkbox} radio={args.radio} />
 );
 
 export const Default = Template.bind({});
 Default.args = {
+  variant: 'primary',
   columns: columns,
   data: data,
   checkbox: true,

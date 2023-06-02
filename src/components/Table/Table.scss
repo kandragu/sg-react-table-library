@@ -1,4 +1,10 @@
 // Define variables and mixins
+$primary: grey;
+$secondary: #60966c;
+$primary-selecton-btn: #5c50bb;
+$primary-row-selected: #efedfd;
+$secondary-row-selected: #aea2ef;
+
 $font-family-avenir-heavy: 'Avenir Heavy', sans-serif;
 $font-family-avenir-book: 'Avenir Book', sans-serif;
 $line-height: 1.75;
@@ -60,6 +66,14 @@ $select-btn-color: #5c50bb;
     }
   }
 
+  &-primary th {
+    background-color: rgba($color: grey, $alpha: 0.1);
+  }
+
+  &-secondary th {
+    background-color: rgba($color: $secondary, $alpha: 0.3);
+  }
+
   th {
     padding: 24px;
     font-family: $font-family-avenir-heavy;
@@ -68,8 +82,6 @@ $select-btn-color: #5c50bb;
     cursor: pointer;
 
     @include font-size(XL); // Change this to apply different font sizes
-
-    background-color: rgba($color: grey, $alpha: 0.1);
   }
 
   td {
@@ -83,7 +95,7 @@ $select-btn-color: #5c50bb;
     .selectionBtn {
       @include btn-size(XL); // Change this to apply different button sizes
       border-radius: 50%;
-      accent-color: #5c50bb;
+      accent-color: $primary-selecton-btn;
     }
   }
 
@@ -108,8 +120,13 @@ $select-btn-color: #5c50bb;
     content: ' ↓';
   }
 
-  .selected-row {
-    background-color: #efedfd;
+  &-selected-row {
+    &-primary {
+      background-color: $primary-row-selected;
+    }
+    &-secondary {
+      background-color: $secondary-row-selected;
+    }
   }
 
   @media (max-width: 780px) {
@@ -117,7 +134,6 @@ $select-btn-color: #5c50bb;
     border-radius: 8px;
     margin: 4rem;
     border-spacing: 0;
-    // background-color: #5c50bb;
 
     thead {
       th:first-child {
@@ -136,9 +152,7 @@ $select-btn-color: #5c50bb;
       letter-spacing: $letter-spacing-header;
       cursor: pointer;
 
-      @include font-size(XL); // Change this to apply different font sizes
-
-      background-color: rgba($color: grey, $alpha: 0.1);
+      @include font-size(LG); // Change this to apply different font sizes
     }
 
     td {
@@ -149,24 +163,12 @@ $select-btn-color: #5c50bb;
       .selectionBtn {
         @include btn-size(LG); // Change this to apply different button sizes
         border-radius: 50%;
-        accent-color: #5c50bb;
+        accent-color: $primary-selecton-btn;
       }
     }
 
     tr {
       position: relative;
-    }
-
-    .sort-asc::after {
-      content: ' ↑';
-    }
-
-    .sort-desc::after {
-      content: ' ↓';
-    }
-
-    .selected-row {
-      background-color: #efedfd;
     }
   }
 
@@ -207,12 +209,6 @@ $select-btn-color: #5c50bb;
       border: none;
 
       @include font-size(SM); // Change this to apply different font sizes for small screens
-
-      .selectionBtn {
-        @include btn-size(LG); // Change this to apply different button sizes
-        border-radius: 50%;
-        accent-color: #5c50bb;
-      }
     }
 
     th {

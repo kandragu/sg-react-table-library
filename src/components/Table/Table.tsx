@@ -2,6 +2,8 @@ import React, { useState, useMemo, useCallback } from 'react';
 import classNames from 'classnames';
 import './Table.scss';
 
+type TableVariant = 'primary' | 'secondary';
+
 interface Column {
   key: string;
   label: string;
@@ -14,9 +16,10 @@ interface TableProps {
   columns: Column[];
   radio?: boolean;
   checkbox?: boolean;
+  variant?: TableVariant;
 }
 
-const Table: React.FC<TableProps> = ({ data, columns, radio, checkbox }) => {
+const Table: React.FC<TableProps> = ({ data, columns, radio, checkbox, variant = 'primary' }) => {
   const [selectedRows, setSelectedRows] = useState<string[]>([]);
 
   const [sortedColumn, setSortedColumn] = useState<string>('');
@@ -137,7 +140,7 @@ const Table: React.FC<TableProps> = ({ data, columns, radio, checkbox }) => {
         <tr
           key={row.id}
           className={classNames({
-            'selected-row': selectedRows?.includes(row.id),
+            [`table-selected-row-${variant}`]: selectedRows?.includes(row.id),
           })}
         >
           {renderSelectionButon(row)}
@@ -152,7 +155,7 @@ const Table: React.FC<TableProps> = ({ data, columns, radio, checkbox }) => {
   return (
     <>
       <div className="mobile-header">Contact details</div>
-      <table className="table">
+      <table className={classNames('table', `table-${variant}`)}>
         <thead>{renderHeader()}</thead>
         <tbody>{renderRows()}</tbody>
       </table>
