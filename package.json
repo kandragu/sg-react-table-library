@@ -9,7 +9,7 @@
   "homepage": "",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git@github.com:kandragu/sg-react-table-library.git"
   },
   "scripts": {
     "start": "start-storybook -p 6006",
