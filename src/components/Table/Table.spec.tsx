@@ -55,7 +55,7 @@ describe('Table component', () => {
     expect(checkboxes.length).toBe(data.length);
   });
 
-  it.only('renders cell content correctly', () => {
+  it('renders cell content correctly', () => {
     const { getAllByRole } = render(<Table columns={columns} data={data} />);
 
     const rows = getAllByRole('row');

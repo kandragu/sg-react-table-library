@@ -5,7 +5,7 @@ const columns = [
   { key: 'penalty', label: 'Penalty' },
 ];
 
-const data = [
+const data: Record<string, string | number>[] = [
   {
     id: 1,
     name: 'Mavis Chen',
