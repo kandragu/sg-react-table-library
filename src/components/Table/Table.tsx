@@ -137,10 +137,13 @@ const Table: React.FC<TableProps> = ({ data, columns, radio, checkbox }) => {
     ));
 
   return (
-    <table className="table">
-      <thead>{renderHeader()}</thead>
-      <tbody>{renderRows()}</tbody>
-    </table>
+    <>
+      <div className="mobile-header">Contact details</div>
+      <table className="table">
+        <thead>{renderHeader()}</thead>
+        <tbody>{renderRows()}</tbody>
+      </table>
+    </>
   );
 };
 
