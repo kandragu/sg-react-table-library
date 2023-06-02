@@ -20,3 +20,12 @@ Default.args = {
   checkbox: true,
   radio: false,
 };
+
+export const Secondary = Template.bind({});
+Secondary.args = {
+  variant: 'secondary',
+  columns: columns,
+  data: data,
+  checkbox: false,
+  radio: true,
+};
