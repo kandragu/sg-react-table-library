@@ -7,12 +7,12 @@ type TableVariant = 'primary' | 'secondary';
 interface Column {
   key: string;
   label: string;
-  render?: (value: any, row: any) => React.ReactNode;
+  render?: (value: any, row: any, type: string | undefined) => React.ReactNode;
   type?: 'radio' | 'checkbox' | 'search' | undefined;
 }
 
 interface TableProps {
-  data: Record<string, string | number>[];
+  data: Record<string, string | number | undefined>[];
   columns: Column[];
   radio?: boolean;
   checkbox?: boolean;
@@ -42,7 +42,7 @@ const Table: React.FC<TableProps> = ({ data, columns, radio, checkbox, variant =
     if (!row[key]) return null;
 
     if (render) {
-      return render(row[key], row);
+      return render(row[key], row, column.type);
     }
 
     return row[key];

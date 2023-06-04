@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Table from './Table';
-import { columns, data } from './Table.data';
+import { columns, dataCustomCell, columnsForCustomCell, data } from './Table.data';
 
 export default {
   title: 'Table',
@@ -10,6 +10,16 @@ export default {
 
 const Template: ComponentStory<typeof Table> = (args) => (
   <Table variant={args.variant} data={data} columns={columns} checkbox={args.checkbox} radio={args.radio} />
+);
+
+const TemplateForCustomCell: ComponentStory<typeof Table> = (args) => (
+  <Table
+    variant={args.variant}
+    data={dataCustomCell}
+    columns={columnsForCustomCell}
+    checkbox={args.checkbox}
+    radio={args.radio}
+  />
 );
 
 export const Default = Template.bind({});
@@ -26,6 +36,16 @@ Secondary.args = {
   variant: 'secondary',
   columns: columns,
   data: data,
+  checkbox: false,
+  radio: true,
+};
+
+export const CustomCell = TemplateForCustomCell.bind({});
+
+CustomCell.args = {
+  variant: 'secondary',
+  columns: columnsForCustomCell,
+  data: dataCustomCell,
   checkbox: false,
   radio: true,
 };
